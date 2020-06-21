@@ -17,9 +17,7 @@ class Game
     CSV.foreach(file, 'r', { col_sep: "\t" }) do |row|
       name = row[0]
       score = row[1]
-      player = find_or_initialize_player(row[0])
-
-      last_frame = player.frames.last
+      player = find_or_initialize_player(name)
 
       if score.to_i > 10
         # puts "This throw (#{name} #{score}) is invalid and will be considered as zero"
@@ -30,6 +28,8 @@ class Game
         # puts "This throw (#{name} #{score}) is invalid and will be ignored"
         next
       end
+
+      last_frame = player.frames.last
 
       if last_frame.nil?
         player.frames << [score]
@@ -69,10 +69,10 @@ class Game
       end
       print "\n"
       print "Score\t"
-      score = 0
+      sum = 0
       p.frames.each_with_index do |_f, i|
-        score += p.score_for_frame(i)
-        print "\t#{score}\t"
+        sum += p.score_for_frame(i)
+        print "\t#{sum}\t"
       end
       print "\n"
     end

@@ -12,13 +12,13 @@ class Player
   end
 
   def score
-    score = 0
+    sum = 0
 
     frames.each_with_index do |_f, i|
-      score += score_for_frame(i)
+      sum += score_for_frame(i)
     end
 
-    score
+    sum
   end
 
   def score_for_frame(frame_index)
