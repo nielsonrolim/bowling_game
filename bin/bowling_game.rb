@@ -24,7 +24,7 @@ game.players.each do |p|
       f.each_with_index do |t, i|
         if t == 10
           throw = 'X'
-        elsif i == 1 && t + f[i-1] == 10
+        elsif i == 1 && t.to_i + f[i-1].to_i == 10
           throw = '/'
         else
           throw = t

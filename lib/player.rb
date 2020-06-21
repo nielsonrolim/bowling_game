@@ -50,7 +50,7 @@ class Player
 
   def strike?(frame_index)
     frame = frames[frame_index]
-    frame.present? && frame.size == 1 && frame.first == 10
+    frame.present? && frame.size == 1 && frame.first.to_i == 10
   end
 
   def bonus_for_spare(frame_index)
