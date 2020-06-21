@@ -45,9 +45,15 @@ describe Player do
     end
   
     it 'scores a game with a regular last frame' do
-      player.frames = [['3', '7'], [6, '3'], ['10'], ['8', '1'], ['10'], ['10'], ['9', '0'], ['7', '3'], ['4', '4'], ['3', '1']]
+      player.frames = [['3', '7'], ['6', '3'], ['10'], ['8', '1'], ['10'], ['10'], ['9', '0'], ['7', '3'], ['4', '4'], ['3', '1']]
       expect(player.score).to eq(136)
     end    
+
+    it 'scores a regular game with a spare in last frame' do
+      player.frames = [['8', '2'], ['7', '3'], ['3', '4'], ['10'], ['2', '8'], ['10'], ['10'], ['8', '0'], ['10'], ['8', '2', '9']]
+      expect(player.score).to eq(170)
+    end
+  
   end
 
 end
