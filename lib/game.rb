@@ -10,12 +10,12 @@ class Game
     @players = []
     CSV.foreach(file, 'r', { col_sep: "\t" }) do |row|
       name = row[0]
-      score = row[1].to_i
+      score = row[1]
       player = find_or_initialize_player(row[0])
 
       last_frame = player.frames.last
 
-      if score > 10
+      if score.to_i > 10
         # puts "This throw (#{name} #{score}) is invalid and will be considered as zero"
         score = 0
       end
@@ -28,7 +28,7 @@ class Game
       if last_frame.nil?
         player.frames << [score]
       else
-        if (last_frame.first == 10 || last_frame.size == 2) && player.frames.size < 10
+        if (last_frame.first == '10' || last_frame.size == 2) && player.frames.size < 10
           player.frames << [score]
         else
           last_frame.push(score)

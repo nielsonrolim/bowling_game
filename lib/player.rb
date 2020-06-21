@@ -22,6 +22,7 @@ class Player
   end
 
   def score_for_frame(frame_index)
+    frames[frame_index].map!(&:to_i)
     sum = frames[frame_index].sum
     if strike?(frame_index)
       sum += bonus_for_strike(frame_index)
@@ -35,16 +36,16 @@ class Player
     last_frame = frames.last
 
     frames.size == 10 &&
-    ((last_frame.first == 10 && last_frame.size == 3) ||
-      (last_frame.first < 10 && last_frame.size == 2 && last_frame[0] + last_frame[1] < 10) ||
-      (last_frame.first < 10 && last_frame.size == 3))
+    ((last_frame.first == '10' && last_frame.size == 3) ||
+      (last_frame.first.to_i < 10 && last_frame.size == 2 && last_frame[0].to_i + last_frame[1].to_i < 10) ||
+      (last_frame.first.to_i < 10 && last_frame.size == 3))
   end
 
   private
 
   def spare?(frame_index)
     frame = frames[frame_index]
-    frame.present? && (frame[0] + frame[1] == 10)
+    frame.present? && (frame[0].to_i + frame[1].to_i == 10)
   end
 
   def strike?(frame_index)
@@ -56,15 +57,15 @@ class Player
     next_frame = frames[frame_index + 1]
     return 0 if next_frame.nil? || frame_index == 9
 
-    next_frame.first
+    next_frame.first.to_i
   end
 
   def bonus_for_strike(frame_index)
     next_frame = frames[frame_index + 1]
     if strike?(frame_index + 1)
-      next_frame.first + frames[frame_index + 2].first
+      next_frame.first.to_i + frames[frame_index + 2].first.to_i
     else
-      next_frame[0] + next_frame[1]
+      next_frame[0].to_i + next_frame[1].to_i
     end
   end
 
