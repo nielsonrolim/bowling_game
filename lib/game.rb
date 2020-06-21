@@ -19,7 +19,7 @@ class Game
       score = row[1]
       player = find_or_initialize_player(name)
 
-      if score.to_i > 10
+      if score.to_i > 10 || score.to_i < 0
         # puts "This throw (#{name} #{score}) is invalid and will be considered as zero"
         score = 0
       end
