@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require_relative '../autoload'
-require 'awesome_print'
 
 begin
   game = Game.new(ARGV[0])
