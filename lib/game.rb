@@ -5,9 +5,15 @@ require 'csv'
 
 class Game
   attr_accessor :players
+  attr_reader :file
 
   def initialize(file)
     @players = []
+    @file = file
+    load_file_content
+  end
+
+  def load_file_content
     CSV.foreach(file, 'r', { col_sep: "\t" }) do |row|
       name = row[0]
       score = row[1]
@@ -38,6 +44,39 @@ class Game
       players << player unless players.include? player
     end
   end
+
+  def print_results
+    players.each do |p|
+      puts "#{p.name}"
+      print "Pitfalls\t"
+      p.frames.each do |f|
+        if f.size == 1
+          print "\tX\t"
+        else
+          f.each_with_index do |t, i|
+            if t == 10
+              throw = 'X'
+            elsif i == 1 && t.to_i + f[i-1].to_i == 10
+              throw = '/'
+            else
+              throw = t
+            end
+            print "#{throw}\t"
+          end
+        end
+      end
+      print "\n"
+      print "Score\t"
+      score = 0
+      p.frames.each_with_index do |_f, i|
+        score += p.score_for_frame(i)
+        print "\t#{score}\t"
+      end
+      print "\n"
+    end
+  end
+
+  private
 
   def find_or_initialize_player(player_name)
     player = players.select { |p| p.name == player_name }.first

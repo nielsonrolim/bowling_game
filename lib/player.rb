@@ -22,8 +22,7 @@ class Player
   end
 
   def score_for_frame(frame_index)
-    frames[frame_index].map!(&:to_i)
-    sum = frames[frame_index].sum
+    sum = frames[frame_index].map(&:to_i).sum
     if strike?(frame_index)
       sum += bonus_for_strike(frame_index)
     elsif spare?(frame_index)
