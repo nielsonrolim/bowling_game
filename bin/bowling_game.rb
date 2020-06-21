@@ -3,6 +3,10 @@
 require_relative '../autoload'
 require 'awesome_print'
 
-game = Game.new(ARGV[0])
+begin
+  game = Game.new(ARGV[0])
 
-game.print_results
+  game.print_results
+rescue Exception => e
+  puts e.message
+end

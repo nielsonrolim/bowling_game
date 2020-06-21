@@ -10,11 +10,14 @@ class Game
   def initialize(file)
     @players = []
     @file = file
-    load_file_content
+    load_file_content!
   end
 
-  def load_file_content
+  def load_file_content!
     CSV.foreach(file, 'r', { col_sep: "\t" }) do |row|
+      
+      raise 'Incorret format of file' if row.size != 2
+
       name = row[0]
       score = row[1]
       player = find_or_initialize_player(name)
