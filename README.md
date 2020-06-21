@@ -44,7 +44,7 @@ Example files can be found at:
 spec/fixtures/
 ```
 
-To excute:
+To execute the game simulation:
 ```
 ./bin/bowling_game.rb file.txt
 ```
