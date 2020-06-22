@@ -80,8 +80,6 @@ class Game
     end
   end
 
-  private
-
   def find_or_initialize_player(player_name)
     player = players.select { |p| p.name == player_name }.first
 

@@ -40,8 +40,6 @@ class Player
       (last_frame.first.to_i < 10 && last_frame.size == 3))
   end
 
-  private
-
   def spare?(frame_index)
     frame = frames[frame_index]
     frame.present? && (frame[0].to_i + frame[1].to_i == 10)
@@ -51,6 +49,8 @@ class Player
     frame = frames[frame_index]
     frame.present? && frame.size == 1 && frame.first.to_i == 10
   end
+
+  private
 
   def bonus_for_spare(frame_index)
     next_frame = frames[frame_index + 1]
