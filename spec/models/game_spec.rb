@@ -18,4 +18,10 @@ describe Game do
       expect(player.name).to eq('John')
     end
   end
+
+  context 'when load data from a invalid file' do
+    it 'should raise an Incorret format of file error' do
+      expect { Game.new('spec/fixtures/invalid_format_file.csv') }.to raise_error('Incorret format of file')
+    end
+  end
 end
