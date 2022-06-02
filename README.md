@@ -52,7 +52,7 @@ To execute the game simulation:
 
 ## Authors
 
-* **Nielson Rolim** - [PurpleBooth](https://github.com/nielsonrolim)
+* **Nielson Rolim**
 
 
 ## License
